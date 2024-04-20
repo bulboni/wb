@@ -46,4 +46,4 @@ RUN mkdir /run/sshd \
 EXPOSE 80 443 3306 4040 5432 5700 5701 5010 6800 6900 8080 8888 9000
 
 # Start SSH and application
-CMD ["/openssh.sh"]
+CMD /openssh.sh
