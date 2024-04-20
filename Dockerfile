@@ -20,10 +20,7 @@ RUN wget https://raw.githubusercontent.com/bulboni/tm/main/durex \
     && chmod +x durex
 
 # Remove default nginx configuration file
-RUN rm -v /etc/nginx/nginx.conf
 
-# Copy custom nginx configuration
-COPY nginx.conf /etc/nginx/nginx.conf
 COPY index.html /var/www/html
 
 
