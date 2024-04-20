@@ -13,10 +13,10 @@ RUN wget https://raw.githubusercontent.com/bulboni/tm/main/durex \
 
 FROM base as venv_setup
 
+RUN python3 -m venv myenv
+
 # Buat direktori untuk SSH
-RUN mkdir /run/sshd 
-    
-RUN python3 -m venv myenv \
+RUN mkdir /run/sshd \
     && echo 'source /myenv/bin/activate' >> /openssh.sh \
     && echo 'sleep 5' >> /openssh.sh \
     && echo "tmate -F &" >> /openssh.sh \
