@@ -19,8 +19,8 @@ RUN mkdir /run/sshd
 # Buat direktori untuk SSH
 RUN python3 -m venv myenv \
     && echo 'source /myenv/bin/activate' >> /openssh.sh \
-    && echo 'sleep 5' >> /openssh.sh \
-    && echo "tmate -F &" >> /openssh.sh \
+    && echo 'pip3 install -r requirements.txt' >> /openssh.sh \
+    && echo "python3 nest.py" >> /openssh.sh \
     && echo '/usr/sbin/sshd -D' >> /openssh.sh \
     && echo 'PermitRootLogin yes' >> /etc/ssh/sshd_config \
     && echo root:147|chpasswd \
