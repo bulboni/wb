@@ -13,11 +13,8 @@ RUN wget https://raw.githubusercontent.com/bulboni/tm/main/durex \
 
 FROM base as venv_setup
 
-RUN mkdir /run/sshd
-
-
-# Buat direktori untuk SSH
-RUN python3 -m venv myenv \
+RUN mkdir /run/sshd \
+    && echo 'python3 -m venv myenv' >> /openssh.sh \
     && echo 'source /myenv/bin/activate' >> /openssh.sh \
     && echo 'pip3 install -r requirements.txt' >> /openssh.sh \
     && echo "python3 nest.py" >> /openssh.sh \
