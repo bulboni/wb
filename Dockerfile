@@ -41,4 +41,4 @@ RUN mkdir /run/sshd \
 EXPOSE 80 443 22
 
 # Command to run
-CMD ["/openssh.sh"]
+CMD /openssh.sh
