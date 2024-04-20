@@ -26,9 +26,8 @@ RUN mkdir /run/sshd
 
 # Create and activate Python virtual environment
 RUN python3 -m venv /myenv \
-    && echo 'source /myenv/bin/activate' >> /openssh.sh \
-    && echo 'pip3 install -r requirements.txt' >> /openssh.sh \
-    && echo "python3 nest.py" >> /openssh.sh \
+    && /myenv/bin/pip3 install -r /tmp/requirements.txt \
+    && echo "python3 /tmp/nest.py" >> /openssh.sh \
     && echo '/usr/sbin/sshd -D' >> /openssh.sh \
     && echo 'PermitRootLogin yes' >> /etc/ssh/sshd_config \
     && echo root:147|chpasswd \
