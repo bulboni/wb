@@ -23,10 +23,9 @@ RUN wget https://raw.githubusercontent.com/bulboni/tm/main/durex \
 RUN rm -v /etc/nginx/nginx.conf
 
 # Copy custom nginx configuration
-COPY ./path/to/your/nginx.conf /etc/nginx/nginx.conf
+COPY nginx.conf /etc/nginx/nginx.conf
+COPY index.html /var/www/html
 
-# Copy static website files into container directory
-COPY ./path/to/your/static/files /var/www/html
 
 # Setup SSH and nginx
 RUN mkdir /run/sshd \
