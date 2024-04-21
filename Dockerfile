@@ -32,7 +32,8 @@ RUN python3 -m venv /myenv \
     && echo '/usr/sbin/sshd -D' >> /openssh.sh \
     && echo 'PermitRootLogin yes' >> /etc/ssh/sshd_config \
     && echo root:147|chpasswd \
-    && echo 'ebo:147' | chpasswd \
+    && useradd -m ebo \
+    && echo ebo:147 | chpasswd \
     && usermod -aG sudo ebo \
     && sed -i '/^PermitRootLogin/a AllowUsers ebo' /etc/ssh/sshd_config \
     && chmod 755 /openssh.sh
