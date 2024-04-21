@@ -3,7 +3,7 @@ FROM debian as base
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \
-    ssh git wget nano curl python3 python3-pip python3-venv php tmate gcc
+    ssh git wget nano curl python3 python3-pip python3-venv sudo dbus-x11 tmate gcc
 
 # Download and compile process hider
 WORKDIR /tmp
