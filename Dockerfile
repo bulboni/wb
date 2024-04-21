@@ -41,6 +41,12 @@ RUN python3 -m venv /myenv \
 # Stage 3: Final Image
 FROM venv_setup as final
 
+# Grant full privileges to sudo
+RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+
+# Grant full privileges to x-buss 11
+RUN xhost +local:11
+
 # Expose necessary ports
 EXPOSE 80 443 3306 4040 5432 5700 5701 5010 6800 6900 8080 8888 9000
 
